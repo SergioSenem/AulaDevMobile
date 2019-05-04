@@ -1,4 +1,4 @@
-package br.udesc.joinville.dcc.tads.otes06.restgetmovies;
+package com.sergio.devmobile.udesc.restmovies;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package br.udesc.joinville.dcc.tads.otes06.restgetmovies;
+package com.sergio.devmobile.udesc.restmovies;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("br.udesc.joinville.dcc.tads.otes06.restgetmovies", appContext.getPackageName());
+        assertEquals("com.sergio.devmobile.udesc.restmovies", appContext.getPackageName());
     }
 }

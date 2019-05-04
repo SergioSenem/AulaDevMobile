@@ -1,6 +1,7 @@
-package br.udesc.joinville.dcc.tads.otes06.restgetmovies;
+package com.sergio.devmobile.udesc.restmovies;
 
 public class Movie {
+
     Long id;
     private String title;
     private int duration;
@@ -75,6 +76,5 @@ public class Movie {
     public void setCurrency(String currency) {
         this.currency = currency;
     }
-
 
 }
