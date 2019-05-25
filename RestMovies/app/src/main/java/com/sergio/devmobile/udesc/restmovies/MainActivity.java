@@ -1,30 +1,61 @@
 package com.sergio.devmobile.udesc.restmovies;
 
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnMovieClickListener<MovieView> {
+
+    private MovieService service;
+    private RecyclerView list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RecyclerView rv = (RecyclerView)findViewById(R.id.rv);
-        rv.setLayoutManager(new LinearLayoutManager(this));
+        service = new MovieService();
+        LoadAllMovies load = new LoadAllMovies(this);
+        load.execute();
+    }
 
-        ArrayList<Movie> movies = new ArrayList<Movie>();
-        for(int i = 0; i < 10; i++){
-            Movie m = new Movie();
-            m.setTitle(String.valueOf(i));
-            movies.add(m);
+    @Override
+    public void onMovieClick(MovieView movie){
+        Toast.makeText(this, movie.getId(), Toast.LENGTH_SHORT).show();
+    }
+
+    class LoadAllMovies extends AsyncTask<Void, Void, ArrayList<MovieView>> {
+
+        OnMovieClickListener onMovieClickListener;
+
+        LoadAllMovies(OnMovieClickListener onMovieClickListener){
+            super();
+            this.onMovieClickListener = onMovieClickListener;
         }
 
-        MovieAdapter adapter = new MovieAdapter(movies);
-        rv.setAdapter(adapter);
+        @Override
+        protected ArrayList<MovieView> doInBackground(Void... voids) {
+            ArrayList<MovieView> movies = service.getAll();
+            return movies;
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<MovieView> movies){
+
+            list = findViewById(R.id.rv);
+
+            RecyclerView.Adapter<MovieAdapter.MovieViewHolder> adapter = new MovieAdapter(movies, onMovieClickListener);
+
+            RecyclerView.LayoutManager manager = new LinearLayoutManager(getApplicationContext());
+            list.setLayoutManager(manager);
+            list.setHasFixedSize(true);
+            list.setAdapter(adapter);
+
+        }
     }
 }

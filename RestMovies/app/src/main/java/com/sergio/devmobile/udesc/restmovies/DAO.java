@@ -19,11 +19,13 @@ import java.util.List;
 
 public abstract class DAO<T> {
 
-    private static String baseUrl = "http://localhost:8080";
-    private URL url;
-    private HttpURLConnection connection;
+    private static String baseUrl = "http://10.0.2.2:8080/";
 
     private HttpService httpService;
+
+    public DAO(){
+        httpService = new HttpService();
+    }
 
     public abstract String getRepository();
 
@@ -32,7 +34,7 @@ public abstract class DAO<T> {
     public abstract T getObject(JSONObject json) throws JSONException;
 
     public String getFullUrl(){
-        return baseUrl + "/" + getRepository();
+        return baseUrl + getRepository();
     }
 
     public List<T> getAll(){

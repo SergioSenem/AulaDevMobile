@@ -4,9 +4,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class DAODirector extends DAO<Director> {
+
     @Override
     public String getRepository() {
-        return "Directors";
+        return "directors";
     }
 
     @Override

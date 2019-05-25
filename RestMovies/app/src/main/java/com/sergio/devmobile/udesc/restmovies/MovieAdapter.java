@@ -11,10 +11,12 @@ import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
 
-    List<Movie> movies;
+    List<MovieView> movies;
+    OnMovieClickListener onMovieClickListener;
 
-    MovieAdapter(List<Movie> movies){
+    MovieAdapter(List<MovieView> movies, OnMovieClickListener onMovieClickListener) {
         this.movies = movies;
+        this.onMovieClickListener = onMovieClickListener;
     }
 
     public static class MovieViewHolder extends RecyclerView.ViewHolder {
@@ -36,7 +38,14 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
     @Override
     public void onBindViewHolder(@NonNull MovieViewHolder viewHolder, int i) {
+        final MovieView m = this.movies.get(i);
         viewHolder.titleView.setText(movies.get(i).getTitle());
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                onMovieClickListener.onMovieClick(m);
+            }
+        });
     }
 
     @Override

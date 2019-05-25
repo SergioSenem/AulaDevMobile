@@ -6,11 +6,11 @@ public class MovieService {
 
     private DAOMovie dao;
 
-    public MovieService(){
+    public MovieService() {
         dao = new DAOMovie();
     }
 
-    public Movie getById(String id){
+    public Movie getById(String id) {
         return dao.getById(id);
     }
 

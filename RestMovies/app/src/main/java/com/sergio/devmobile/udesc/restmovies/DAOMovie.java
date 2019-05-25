@@ -6,7 +6,7 @@ import org.json.JSONObject;
 public class DAOMovie extends DAO<Movie>{
     @Override
     public String getRepository() {
-        return "Movies";
+        return "movies/";
     }
 
     @Override

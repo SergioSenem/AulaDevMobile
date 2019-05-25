@@ -4,6 +4,15 @@ public class MovieView {
     private String id;
     private String title;
 
+    public MovieView(){
+
+    }
+
+    public MovieView(String id, String title){
+        this.id = id;
+        this.title = title;
+    }
+
     public MovieView(Movie movie){
         this.id = movie.getId();
         this.title = movie.getTitle();
