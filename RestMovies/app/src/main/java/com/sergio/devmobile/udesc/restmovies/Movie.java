@@ -2,7 +2,7 @@ package com.sergio.devmobile.udesc.restmovies;
 
 public class Movie {
 
-    Long id;
+    private String id;
     private String title;
     private int duration;
     private double cost;
@@ -21,11 +21,11 @@ public class Movie {
         this.currency = currency;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
